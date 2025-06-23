@@ -1,0 +1,106 @@
+.diagonal-gradient-line{
+    width: 150vw;
+    height: 700px;
+    margin-top: -300px;
+    margin-left: -25vw; 
+    background: linear-gradient(90deg, #0088cc, #00d1b2, #0088cc, #00d1b2, #0088cc); /* Add multiple transitions */
+    background-size: 300% 100%;
+    position: absolute;
+    z-index: -20;
+    animation: move-gradient 15s linear infinite; 
+    transform: rotate(-5deg);
+}
+
+@keyframes move-gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 300% 50%; 
+    }
+}
+
+.pfp-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full viewport height for this container */
+    width: 100%; /* Full width */
+    position: relative; /* Position relative to avoid overlap with other content */
+}
+
+.pfp-box{
+    position: relative;
+    background-color: #2c2c2c; 
+    width:70%;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); 
+    text-align: center;
+    padding: 20px;     
+}
+
+.pfp-links{
+    position: relative;
+    top: -8rem;
+    width: 14vw;
+    border-radius: 50%;
+    box-shadow: 0 0 25px var(--main-color);
+}
+
+.h1-name{
+    color: white;
+    font-size: 25px;
+    margin-top: -70px;
+}
+
+.location{
+    color: grey;
+    font-size: 16px;
+    font-weight: 100;
+    margin-bottom: 20px;
+}
+
+.email-button-container{
+    background-color: #1a1a1a; 
+    width:12%;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); 
+    text-align: center;
+    padding: 20px;  
+    padding: 10px; 
+    margin: 10px auto;
+    cursor: pointer;
+}
+
+.email-button-container:hover {
+    transform: scale(1.05);
+}
+
+.email-button{
+    color: white;
+    font-size: 150%;
+    color: white;
+}
+
+.bx-envelope{
+    color: #0088CC;
+}
+
+.social-icons a{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    background: #1a1a1a;
+    border-radius: 50%;
+    color: #1a1a1a;
+    margin: 3rem 1.5rem 3rem 0;
+    transition: 0.3 ease-in-out;
+    font-size: 2rem;
+    margin-top: 10px;
+}
+
+.social-icons a:hover {
+    transform: scale(1.05);
+}

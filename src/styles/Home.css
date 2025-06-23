@@ -1,0 +1,219 @@
+.home-content {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    text-align: left;
+    justify-content: center;
+    margin-top: 7rem;
+}
+
+span{
+    color: var(--main-color);
+}
+
+.logo span{
+    color: var(--main-color);
+}
+
+.home-content h3{
+    margin-bottom: 2rem;
+    font-size: 3.5rem;
+    margin-top: 50px;
+}
+
+.home-content h2{
+    margin-bottom: -1rem;
+    margin-top: 10rem;
+    font-size: 1.5rem;
+}
+
+.home-content h1{
+    font-size: 7rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    line-height: 1;
+}
+
+.ppf-img img{
+    position: relative;
+    min-width: 120px;   /* Minimum size */
+    max-width: 300px; 
+    top: 10rem;
+    border-radius: 50%;
+    box-shadow: 0 0 25px var(--main-color);
+    cursor: pointer;
+    transition: 0.4s ease-in-out;
+}
+
+.ppf-img img:hover{
+    box-shadow:0 0 35px  #515151;
+    transform: scale(1.02);
+}
+
+.home-content p{
+    font-size:  1.5rem;
+    font-weight: 500;
+    line-height: 1.8;
+    max-width: 1000px;
+}
+
+.icons a{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    background: transparent;
+    border: 2px solid var(--main-color);
+    border-radius: 50%;
+    color: var(--main-color);
+    margin: 3rem 1.5rem 3rem 0;
+    transition: 0.3 ease-in-out;
+    font-size: 2rem;
+}
+
+.icons a:hover{
+    transform: scale(1.3)translateY(-2px);
+}
+
+.btn-container a {
+    display: inline-block;
+    padding: 1rem 3.5rem;
+    background-color: #515151;
+    letter-spacing: 0.1rem;
+    color: white;
+    border-radius: 4rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: relative; /* Establish stacking context */
+    z-index: 2; /* Keep the button content above the glow */
+    text-decoration: none;
+    border: none;
+    outline: none;
+}
+
+.btn-container a:hover {
+    transform: scale(1.05);
+}
+
+.btn-container a::before {
+    content: "";
+    background: linear-gradient(
+        45deg,
+        #0088cc,
+        #00d1b2,
+        #0077b6,
+        #0096c7,
+        #00c9a7,
+        #00b4d8
+    );
+    position: absolute;
+    top: -8px; /* Extend the glow outside the button */
+    left: -8px;
+    width: calc(100% + 15px); /* Glow area larger than button */
+    height: calc(100% + 15px);
+    background-size: 600%;
+    z-index: -5; /* Ensure glow is below the button content */
+    filter: blur(15px); /* Increase blur for a smooth glow */
+    animation: glowing 20s linear infinite;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 4rem; /* Match button's border-radius */
+    opacity: 0; /* Initially invisible */
+}
+
+.btn-container a:hover::before {
+    opacity: 1; /* Make the glow visible on hover */
+}
+
+.btn-container a::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #515151; /* Matches the button background */
+    left: 0;
+    top: 0;
+    z-index: -2; 
+    border-radius: 4rem; 
+}
+
+@keyframes glowing{
+    0% {background-position: 0 0;}
+    50% {background-position: 400% 0;}
+    100% {background-position: 0 0;}
+}
+
+
+.animation{
+    font-size: 34px;
+    font-weight: 600;
+    min-width: 280px;
+}
+
+.animation span{
+    position: relative;
+    
+}
+
+.animation span::before {
+    content: "UGC Creator";
+    color: var(--main-color);
+    animation: words 2s 1 forwards;
+}
+
+.animation span::after {
+    content: "";
+    background-color: var(--bg-color);
+    position: absolute;
+    width: calc(100% + 8px);
+    height: 100%;
+    border-left: 3px solid var(--bg-color);
+    right: -8px;
+    animation: cursor 0.6s steps(1) 4, typing 2s steps(20) 1 forwards;
+}
+
+@keyframes cursor {
+    0%, 100% {
+        border-left: 2px solid var(--main-color);
+    }
+    50% {
+        border-left: 2px solid var(--bg-color);
+    }
+}
+
+@keyframes words {
+    0%, 100% {
+        content: "UGC Creator";
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 10ch;
+    }
+    to {
+        width: 0;
+    }
+}
+
+@media (max-width: 768px) {
+  .home-content h3 {
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+    margin-top: 20px;
+  }
+
+  .home-content h2 {
+    margin-bottom: -0.5rem;
+    margin-top: 3rem;
+    font-size: 1.2rem;
+  }
+
+  .icons a {
+    margin: 0.8rem 1rem 2rem 0;
+  }
+
+  .btn-container {
+    margin-top: 1.5rem;
+  }
+}

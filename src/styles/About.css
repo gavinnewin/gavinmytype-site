@@ -1,0 +1,98 @@
+.animation1{
+    font-size: 34px;
+    font-weight: 600;
+    min-width: 280px;
+}
+
+.animation1 span{
+    position: relative;
+}
+
+.animation1 span::before{
+    content: "Gavin Nguyen";
+    color: var(--main-color);
+    animation: words1 2s 1 forwards;
+}
+
+.animation1 span::after{
+    content: "";
+    position: absolute;
+    width: calc(100% + 8px);
+    height: 100%;
+    border-left: 2px solid var(--main-color);
+    right: -8px;
+    animation: cursor1 0.6s steps(1) 4, typing1 2s steps(25) 1 forwards;
+}
+
+@keyframes cursor1{
+    0%,
+    100%{
+        border-left: 2px solid var(--main-color);
+    }
+    50% {
+        border-left: 2px solid transparent;
+    }
+}
+
+@keyframes words1{
+    0%,
+    100%{
+        content: "Gavin Nguyen";
+    }
+}
+
+@keyframes typing1{
+    from {
+        width: 25ch;
+    }
+    to {
+        width: 0;
+    }
+}
+
+.home-content1{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    text-align: left;
+    justify-content: center;
+    margin-top: 7rem;
+}
+
+.home-content1  h3{
+    margin-top: 50px;
+    font-size: 20px;
+    margin-left: 20px;
+    font-weight: 200;
+    word-spacing: 7px;
+    letter-spacing: 5px;
+}
+
+.home-content1 h2{
+    margin-bottom: -1rem;
+    margin-top: 10rem;
+    font-size: 1.5rem;
+}
+
+.home-content1 h1{
+    font-size: 7rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    line-height: 1;
+}
+
+.ppf-img1 img{
+    position: relative;
+    top: -5rem;
+    width: 15vw;
+    border-radius: 50%;
+    box-shadow: 0 0 25px var(--main-color);
+    cursor: pointer;
+    transition: 0.4s ease-in-out;
+    margin-right: 50px;
+}
+
+.ppf-img1 img:hover{
+    box-shadow:0 0 50px  #515151;
+}
+
