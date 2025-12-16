@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
 import "../styles/Home.css";
 import BrandsCarousel from "../components/BrandsCarousel";
 
 function Home() {
     return (
       <div className="home-container animate-page">
-        <Navbar />
+
         <section className="home-pg">
           <div className="home-content">
             <h2>Hello, I'm</h2>

@@ -1,12 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from "../components/Navbar";
 import "../styles/About.css";
 
 function About() {
   return (
     <div className="about-container animate-page">
-      <Navbar />
       <section className="home-pg">
         <div className="home-content1">
           <h2>Hello, I'm</h2>

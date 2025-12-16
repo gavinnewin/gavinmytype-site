@@ -42,12 +42,12 @@ span{
     border-radius: 50%;
     box-shadow: 0 0 25px var(--main-color);
     cursor: pointer;
-    transition: 0.4s ease-in-out;
+    transition: 0.2s ease-in-out;
 }
 
 .ppf-img img:hover{
     box-shadow:0 0 35px  #515151;
-    transform: scale(1.02);
+    transform: scale(1.005);
 }
 
 .home-content p{
@@ -73,7 +73,7 @@ span{
 }
 
 .icons a:hover{
-    transform: scale(1.3)translateY(-2px);
+    transform: scale(1.1)translateY(-2px);
 }
 
 .btn-container a {
@@ -93,7 +93,7 @@ span{
 }
 
 .btn-container a:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .btn-container a::before {

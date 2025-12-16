@@ -24,7 +24,7 @@ function Navbar() {
   };
 
   return (
-    <header className="header">
+    <header className="nav-header">
       {/* Logo */}
       <Link to="/" className="logo">
         gavinmytype

@@ -1,12 +1,10 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
 import "../styles/Links.css";
 
 function Links() {
   return (
     <div className="links-container animate-page">
-      <Navbar />
       <div className="gradient wrapper">
         <div className="diagonal-gradient-line"></div>
       </div>
