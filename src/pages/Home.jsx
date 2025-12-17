@@ -34,8 +34,8 @@ function Home() {
             </Link>
           </div>
         </section>
-        <div style={{ margin: '150px 0' }}>
-          <BrandsCarousel />
+        <div className="brands-wrap">
+           <BrandsCarousel />
         </div>
       </div>
     );

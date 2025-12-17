@@ -168,81 +168,52 @@ input:checked + .slider:before {
 /* Mobile styles */
 @media (max-width: 900px) {
   .nav-header {
-    padding: 0.2rem 0.2rem;
-    height: 35px;
+    padding: 10px 14px;     /* more breathing room */
+    height: auto;           /* don’t hard cap it */
+    min-height: 56px;       /* standard mobile header height */
   }
 
   .logo {
     font-size: 1.8rem;
+    line-height: 1;         /* keeps it vertically tight but clean */
   }
 
   .hamburger {
     display: flex;
-  }
-
-  .mobile-menu-btn {
-    display: block;
+    right: 14px;            /* match header padding */
   }
 
   .navbar {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 60%;
+    width: min(320px, 80%); /* better than 60% on small screens */
     height: 100vh;
     background-color: var(--bg-color);
     flex-direction: column;
-    padding: 60px 1rem 1rem;
+    padding: 80px 16px 16px; /* more top padding so links aren’t under header */
     transition: right 0.3s ease;
-    box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
-    align-items: center;
+    box-shadow: -2px 0 12px rgba(0, 0, 0, 0.15);
+    align-items: stretch;   /* links fill width */
+    gap: 10px;
   }
 
   .navbar a {
-    font-size: 0.95rem;
-    padding: 0.4rem 0;
+    font-size: 1.05rem;
+    padding: 12px 10px;
     width: 100%;
-    text-align: center;
+    text-align: left;       /* feels less cramped than centered */
+    border-radius: 10px;
+  }
+
+  .theme-toggle {
+    margin-top: 12px;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
   }
 
   .navbar.open {
     right: 0;
   }
-
-  .hamburger.active span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .hamburger.active span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 100%;
-    background: var(--bg-color);
-    padding: 1rem;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .theme-toggle {
-    margin: 1rem 0;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-} 
+}
