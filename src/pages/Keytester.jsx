@@ -160,14 +160,27 @@ export default function Keytester() {
   return (
     <div className={`kt-page animate-page`}>
       <header className="kt-intro center-text">
-        <h1 className="heading-primary title">
-          <span>Test Your Keyboard</span>
-        </h1>
-        <p className="paragraph">
-          This interactive tool is designed to help users identify and troubleshoot any issues with their
-          physical keyboard or simply explore its layout
-        </p>
+        
+        <div className="kt-lastbar">
+          <div className="kt-last-left">
+            <strong>Last pressed:</strong>
+            <div className="kt-chips">
+              {lastPressed.length === 0 ? (
+                <span className="kt-chip muted">Start typing…</span>
+              ) : (
+                lastPressed.map((k, idx) => (
+                  <span className="kt-chip" key={`${k.code}-${idx}`} title={k.code}>
+                    {k.label}
+                  </span>
+                ))
+              )}
+            </div>
+          </div>
 
+          <button className="kt-reset" onClick={reset} type="button">
+            Reset
+          </button>
+        </div>
         <div className="theme-and-layout">
           <div />
           {/* FULL / TKL */}
@@ -189,27 +202,6 @@ export default function Keytester() {
               TKL
             </span>
           </div>
-        </div>
-
-        <div className="kt-lastbar">
-          <div className="kt-last-left">
-            <strong>Last pressed:</strong>
-            <div className="kt-chips">
-              {lastPressed.length === 0 ? (
-                <span className="kt-chip muted">Start typing…</span>
-              ) : (
-                lastPressed.map((k, idx) => (
-                  <span className="kt-chip" key={`${k.code}-${idx}`} title={k.code}>
-                    {k.label}
-                  </span>
-                ))
-              )}
-            </div>
-          </div>
-
-          <button className="kt-reset" onClick={reset} type="button">
-            Reset
-          </button>
         </div>
       </header>
 
