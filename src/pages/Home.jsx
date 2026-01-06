@@ -34,9 +34,9 @@ function Home() {
             </Link>
           </div>
         </section>
-        <div className="brands-wrap">
-           <BrandsCarousel />
-        </div>
+          <div className="brands-wrap">
+            <BrandsCarousel />
+          </div>
       </div>
     );
   }

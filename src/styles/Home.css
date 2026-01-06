@@ -279,3 +279,62 @@ span{
 
   
 }
+
+/* ================================
+   HOME PAGE LAYOUT FIX
+   ================================ */
+
+/* Make the page fill the screen */
+.home-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero section takes available space */
+.home-pg {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* Push carousel to the bottom */
+.brands-wrap {
+  margin-top: auto;
+  padding-top: 40px;     /* space below Contact button */
+  padding-bottom: 16px;  /* breathing room from bottom */
+}
+
+/* ================================
+   MOBILE TUNING
+   ================================ */
+@media (max-width: 768px) {
+  /* Remove excess top spacing */
+  .home-content {
+    margin-top: -2rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Bring profile photo up */
+  .ppf-img img {
+    top: 0;              /* overrides earlier 10rem */
+    max-width: 170px;
+  }
+
+  /* Tighten hero spacing */
+  .home-content h2 {
+    margin-top: 0.5rem;
+  }
+
+  .home-content h3 {
+    margin-top: 0.75rem;
+  }
+
+  /* Keep carousel at bottom but visible */
+  .brands-wrap {
+    padding-top: 48px;   /* bigger gap under Contact */
+    padding-bottom: 10px;
+  }
+}
+

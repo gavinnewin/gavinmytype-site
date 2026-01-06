@@ -1,0 +1,277 @@
+/* Monkeytype-like: dark minimal page */
+.gt-page {
+  min-height: 100vh;
+  padding-top: 92px; /* navbar space */
+  background: #0f0f10;
+  color: #c9c9c9;
+}
+
+@media (max-width: 900px) {
+  .gt-page {
+    padding-top: 74px;
+  }
+}
+
+/* Top toolbar */
+.gt-topbar {
+  display: flex;
+  justify-content: center;
+  padding: 18px 12px 0;
+  position: relative;
+  z-index: 5;
+}
+
+.gt-bar {
+  width: min(980px, 20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+}
+
+.gt-pill {
+  border: none;
+  background: transparent;
+  color: #7f7f7f;
+  padding: 0;
+  border-radius: 0;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+
+.gt-pill:hover {
+  color: #cfcfcf;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.gt-pill.active {
+    color: var(--main-color);          /* highlighted text */
+  text-decoration: none;    /* no underline */
+  border: none;             /* just in case */
+  background: transparent;  
+}
+
+.gt-pill:focus,
+.gt-pill:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+
+.gt-pill:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.gt-sep {
+  width: 1px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 0 2px;
+}
+
+.gt-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gt-groupLabel {
+  font-size: 0.9rem;
+  color: #7f7f7f;
+  font-weight: 700;
+  margin-right: 2px;
+}
+
+.gt-spacer {
+  flex: 1;
+}
+
+.gt-statsMini {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.gt-mini {
+  font-size: 0.9rem;
+  color: #7f7f7f;
+  font-weight: 700;
+}
+
+.gt-x {
+  margin-left: 6px;
+  border: 0;
+  background: transparent;
+  color: #7f7f7f;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.gt-x:hover {
+  color: #cfcfcf;
+}
+
+/* Center stage */
+.gt-stage {
+  min-height: calc(100vh - 92px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 90px 16px 40px;
+}
+
+.gt-lang {
+  color: #6f6f6f;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 22px;
+  font-size: 0.95rem;
+}
+
+/* Main text */
+.gt-text {
+  width: min(980px, 96vw);
+  text-align: center;
+
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: clamp(18px, 2.2vw, 28px);
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+
+  user-select: none;
+  white-space: pre-wrap;
+  max-height: calc(1.6em * 3); /* 3 lines */
+  overflow: hidden;
+}
+
+/* characters */
+.gt-ch {
+  display: inline-block;
+}
+
+.gt-ch.idle {
+  color: rgba(255, 255, 255, 0.18);
+}
+
+.gt-ch.ok {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.gt-ch.bad {
+  color: #ff5c5c;
+}
+
+/* caret */
+.gt-ch.caret {
+  position: relative;
+}
+
+.gt-ch.caret::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  width: 2px;
+  height: 1.05em;
+  background: var(--main-color);
+  border-radius: 2px;
+  animation: gtBlink 1s steps(1) infinite;
+}
+
+@keyframes gtBlink {
+  50% { opacity: 0; }
+}
+
+/* hidden input overlay */
+.gt-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  border: 0;
+  background: transparent;
+  color: transparent;
+  caret-color: transparent;
+}
+
+
+/* Results */
+.gt-stage.finished .gt-text {
+  opacity: 0.55;
+}
+
+.gt-results {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Restart button centered under text */
+.gt-restart.centered {
+  border: none;
+  background: transparent;
+  color: #7f7f7f;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.gt-restart.centered:hover {
+  color: #cfcfcf;
+}
+
+.gt-restart.centered:focus,
+.gt-restart.centered:focus-visible {
+  outline: none;
+}
+
+
+.gt-resRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.gt-resBox {
+  padding: 12px 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.gt-resNum {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.gt-resLab {
+  margin-top: 2px;
+  font-size: 0.9rem;
+  color: #7f7f7f;
+  font-weight: 700;
+}
+
+.gt-restart {
+  margin-top: 14px;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: transparent;
+  color: #cfcfcf;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.gt-restart:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+}
