@@ -1,0 +1,451 @@
+/* =========================
+   Scoped port (no global body/html/*)
+   Based on uploaded repo CSS:
+   - general.css vars :contentReference[oaicite:7]{index=7}
+   - style.css keyboard/layout :contentReference[oaicite:8]{index=8}
+   - themes.css theme blocks :contentReference[oaicite:9]{index=9}
+   ========================= */
+
+.kt-page {
+  /* keep your site/navbar intact; just space below fixed nav */
+  padding-top: 92px;
+  padding-bottom: 40px;
+
+  /* your site variables (already used by navbar) */
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+@media (max-width: 900px) {
+  .kt-page {
+    padding-top: 74px;
+  }
+}
+
+/* --- Theme variables (scoped) --- */
+.kt-page {
+  --def-fs: 62.5%;
+  --ff: "Segoe UI", sans-serif;
+
+  /* default keyboard theme (retro) matches repo defaults */
+  --key-border-radius: 0.6rem;
+  --box-shadow-keycaps-value: inset 0 -0.2rem 0 0.3rem;
+  --box-shadow-keycaps-hover-value: inset 0 -0.1rem 0 0.2rem;
+
+  --box-shadow-keycaps: var(--box-shadow-keycaps-value) var(--color-keycaps-shadow);
+  --box-shadow-keycaps-hover: var(--box-shadow-keycaps-hover-value) var(--color-keycaps-shadow);
+
+  --box-shadow-keycaps-accent: var(--box-shadow-keycaps-value) var(--color-keycaps-shadow-accent);
+  --box-shadow-keycaps-accent-hover: var(--box-shadow-keycaps-hover-value) var(--color-keycaps-shadow-accent);
+
+  --box-shadow-keycaps-pressed: var(--box-shadow-keycaps-value) var(--color-keycaps-shadow-pressed);
+  --box-shadow-keycaps-pressed-hover: var(--box-shadow-keycaps-hover-value) var(--color-keycaps-shadow-pressed);
+
+  --color-keyboard: #3c3e4a;
+  --color-keyboard-border: #303642;
+
+  --color-keycaps-legends: #555;
+  --color-keycaps-bg: #f8f9fa;
+  --color-keycaps-shadow: #adb5bd;
+
+  --color-keycaps-legends-accent: #555;
+  --color-keycaps-bg-accent: #e2e3e6;
+  --color-keycaps-shadow-accent: #97a0a8;
+
+  --color-keycaps-legends-pressing: #f03e3e;
+
+  --color-keycaps-legends-pressed: #080e42;
+  --color-keycaps-bg-pressed: #a4a9b0;
+  --color-keycaps-shadow-pressed: #7f8489;
+
+  --standard-key-size: 5rem;
+}
+
+/* Theme modifiers (from themes.css, scoped) */
+.kt-page.theme--retro {
+  /* already default, but kept for parity */
+}
+
+.kt-page.theme--navy-blue {
+  --key-border-radius: 1.2rem;
+
+  --box-shadow-keycaps-value: inset 0 -0.2rem 0 0.3rem;
+  --box-shadow-keycaps-hover-value: inset 0 -0.1rem 0 0.2rem;
+
+  --color-keyboard: #2a309c;
+  --color-keyboard-border: #21267e;
+
+  --color-keycaps-legends: #fff;
+  --color-keycaps-bg: #3d489b;
+  --color-keycaps-shadow: #1c2880;
+
+  --color-keycaps-legends-accent: #fff;
+  --color-keycaps-bg-accent: #4f71e4;
+  --color-keycaps-shadow-accent: #2e43ad;
+
+  --color-keycaps-legends-pressing: #f03e3e;
+
+  --color-keycaps-legends-pressed: #555;
+  --color-keycaps-bg-pressed: #f8f9fa;
+  --color-keycaps-shadow-pressed: #adb5bd;
+}
+
+/* Intro */
+.kt-intro {
+  max-width: 130rem;
+  margin: 0 auto;
+  padding: 3.2rem 3.2rem 0;
+  font-family: var(--ff);
+}
+
+.center-text {
+  text-align: center;
+}
+
+.heading-primary {
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  font-size: 5.2rem;
+  line-height: 1.05;
+  margin-bottom: 2.2rem;
+  color: var(--text-color);
+}
+
+.title span {
+  /* simple gradient text vibe but using your main color */
+  background-image: linear-gradient(45deg, var(--main-color), color-mix(in srgb, var(--main-color) 25%, #000));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.paragraph {
+  font-size: 2rem;
+  line-height: 1.6;
+  margin-bottom: 2.6rem;
+  opacity: 0.86;
+}
+
+/* Top controls */
+.theme-and-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 120rem;
+  margin: 0 auto 1.6rem;
+}
+
+.toggle-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.toggle-section span {
+  font-size: 2.4rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* FULL/TKL switch */
+.kt-switch {
+  position: relative;
+  width: 8.6rem;
+  height: 4.2rem;
+  display: inline-block;
+}
+
+.kt-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.kt-slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: linear-gradient(45deg, #4dabf7, #228be6, #1c70c0, #3c56da);
+  box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.12);
+}
+
+.kt-slider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0.6rem;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  background: #fff;
+  transform: translateY(-50%);
+  transition: transform 0.18s ease;
+}
+
+.kt-switch input:checked + .kt-slider::after {
+  transform: translate(4rem, -50%);
+}
+
+.theme-section {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 2rem;
+}
+
+.theme-section > div {
+  display: flex;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid color-mix(in srgb, var(--main-color) 25%, transparent);
+}
+
+.theme-color {
+  width: 25%;
+}
+
+/* preview dots (same as style.css theme previews) :contentReference[oaicite:10]{index=10} */
+.retro div:nth-child(1) { background-color: #3c3e4a; }
+.retro div:nth-child(2) { background-color: #f8f9fa; }
+.retro div:nth-child(3) { background-color: #a4a9b0; }
+.retro div:nth-child(4) { background-color: #2f3674; }
+
+.navy-blue div:nth-child(1) { background-color: #2a309c; }
+.navy-blue div:nth-child(2) { background-color: #3d489b; }
+.navy-blue div:nth-child(3) { background-color: #a4a9b0; }
+.navy-blue div:nth-child(4) { background-color: #2f3674; }
+
+/* Last pressed bar */
+.kt-lastbar {
+  max-width: 120rem;
+  margin: 0 auto 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1.2rem 1.6rem;
+  border-radius: 1.2rem;
+  background: color-mix(in srgb, var(--bg-color) 85%, #fff);
+  border: 1px solid color-mix(in srgb, var(--main-color) 20%, transparent);
+}
+
+.kt-chips {
+  margin-top: 0.8rem;
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.kt-chip {
+  font-size: 1.4rem;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--main-color) 18%, transparent);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.kt-chip.muted {
+  opacity: 0.7;
+}
+
+.kt-reset {
+  font-size: 1.4rem;
+  padding: 0.9rem 1.2rem;
+  border-radius: 1rem;
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid color-mix(in srgb, var(--main-color) 25%, transparent);
+  cursor: pointer;
+}
+
+/* Keyboard shell + layout (from style.css) :contentReference[oaicite:11]{index=11} */
+.keyboard {
+  display: grid;
+  margin: 0 auto;
+  padding: 0.8rem;
+  border-radius: 0.8rem;
+  background-color: var(--color-keyboard);
+  box-shadow: 0 0.4rem 0 0.6rem var(--color-keyboard-border),
+    0 1.2rem 3.2rem rgba(0, 0, 0, 0.1);
+  transform: translateZ(0);
+  transition: all 0.2s;
+}
+
+.full-size {
+  grid-template-columns: 215fr 2fr 45fr 1fr 60fr;
+  max-width: 122rem;
+}
+
+.tkl {
+  grid-template-columns: 215fr 7fr 45fr;
+  max-width: 100rem;
+}
+
+.key {
+  width: 100%;
+  height: var(--standard-key-size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: var(--key-border-radius);
+  font-size: 1.2rem;
+  font-weight: 700;
+
+  color: var(--color-keycaps-legends);
+  background-color: var(--color-keycaps-bg);
+  box-shadow: var(--box-shadow-keycaps);
+  cursor: pointer;
+  transition: all 0.075s;
+}
+
+.key--accent-color {
+  color: var(--color-keycaps-legends-accent);
+  background-color: var(--color-keycaps-bg-accent);
+  box-shadow: var(--box-shadow-keycaps-accent);
+}
+
+.key.key--pressed {
+  color: var(--color-keycaps-legends-pressed);
+  background-color: var(--color-keycaps-bg-pressed);
+  box-shadow: var(--box-shadow-keycaps-pressed);
+}
+
+/* press simulation */
+.key:hover,
+.key--accent-color:hover,
+.key--pressed:hover,
+.key-pressing-simulation {
+  transform: scale(0.98);
+  box-shadow: var(--box-shadow-keycaps-hover);
+}
+
+.key--accent-color:hover {
+  box-shadow: var(--box-shadow-keycaps-accent-hover);
+}
+
+.key--pressed:hover,
+.key-pressing-simulation {
+  box-shadow: var(--box-shadow-keycaps-pressed-hover);
+}
+
+.region {
+  padding: 0.5rem;
+  gap: 0.25rem;
+}
+
+/* Regions grid */
+.function {
+  display: grid;
+  grid-template-columns: 2fr 2fr repeat(4, 2fr) 1fr repeat(4, 2fr) 1fr repeat(4, 2fr);
+}
+
+.system-control {
+  grid-column: 3;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.typewriter {
+  grid-row: 2;
+  display: grid;
+}
+
+.first-row,
+.second-row,
+.third-row,
+.fourth-row,
+.fifth-row {
+  display: grid;
+  justify-items: center;
+  gap: 0.25rem;
+}
+
+.first-row { grid-template-columns: repeat(13, 1fr) 2fr; }
+.second-row { grid-template-columns: 1.5fr repeat(12, 1fr) 1.5fr; }
+.third-row { grid-template-columns: 1.79fr repeat(11, 1fr) 2.29fr; }
+.fourth-row { grid-template-columns: 2.29fr repeat(10, 1fr) 2.79fr; }
+.fifth-row { grid-template-columns: repeat(3, 1.29fr) 6.36fr repeat(4, 1.29fr); }
+
+.navigation {
+  grid-column: 3;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+
+.numpad {
+  grid-column: 5;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  transition: all 0.15s;
+}
+
+/* Key-specific positioning (from style.css) :contentReference[oaicite:12]{index=12} */
+.arrowup { grid-column: 2; grid-row: 4; }
+.arrowleft, .arrowdown, .arrowright { grid-row: 5; }
+
+.numpadadd { grid-column: 4; grid-row: 2 / span 2; height: 100%; }
+.numpadenter { grid-column: 4; grid-row: 4 / span 2; height: 100%; }
+.numpad0 { grid-column: 1 / span 2; }
+
+/* SVG sizes */
+.arrowup svg, .arrowleft svg, .arrowdown svg, .arrowright svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: var(--color-keycaps-legends);
+}
+.arrowup.key--pressed svg, .arrowleft.key--pressed svg, .arrowdown.key--pressed svg, .arrowright.key--pressed svg {
+  fill: var(--color-keycaps-legends-pressed);
+}
+
+.metaleft svg, .metaright svg {
+  width: 1.8rem;
+  height: 1.8rem;
+  fill: var(--color-keycaps-legends);
+}
+.contextmenu svg {
+  width: 2rem;
+  height: 2rem;
+  stroke: var(--color-keycaps-legends);
+  fill: none;
+}
+
+/* Hide numpad in TKL (same idea as repo hidden steps) :contentReference[oaicite:13]{index=13} */
+.hidden--step1 {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: all 0.15s;
+}
+.hidden--step2 {
+  width: 0;
+  padding: 0;
+}
+
+.kt-footer {
+  display: flex;
+  justify-content: center;
+  padding: 2.4rem 0 0;
+}
+.kt-footnote {
+  font-size: 1.4rem;
+  opacity: 0.75;
+}
+
+
+
+/* Mobile: keep it readable + allow horizontal scroll if needed */
+@media (max-width: 900px) {
+  .heading-primary { font-size: 3.4rem; }
+  .paragraph { font-size: 1.6rem; }
+
+  .keyboard {
+    overflow-x: auto;
+    max-width: 96vw;
+  }
+}
