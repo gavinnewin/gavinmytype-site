@@ -1,7 +1,7 @@
 .animation1{
     font-size: 34px;
     font-weight: 600;
-    min-width: 280px;
+    min-width: 400px;
 }
 
 .animation1 span{
@@ -14,14 +14,15 @@
     animation: words1 2s 1 forwards;
 }
 
-.animation1 span::after{
+.animation1 span::after {
     content: "";
+    background-color: var(--bg-color);
     position: absolute;
-    width: calc(100% + 8px);
+    width: calc(100% + 20px);
     height: 100%;
-    border-left: 2px solid var(--main-color);
+    border-left: 5px solid var(--bg-color);
     right: -8px;
-    animation: cursor1 0.6s steps(1) 4, typing1 2s steps(25) 1 forwards;
+    animation: cursor1 0.6s steps(1) 4, typing1 2s steps(21) 1 forwards;
 }
 
 @keyframes cursor1{
@@ -43,7 +44,7 @@
 
 @keyframes typing1{
     from {
-        width: 25ch;
+        width: 100%;
     }
     to {
         width: 0;

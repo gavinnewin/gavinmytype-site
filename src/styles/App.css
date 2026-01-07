@@ -56,6 +56,11 @@ body{
   z-index: 1;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
+
 @keyframes pageFadeIn {
   0% {
     opacity: 0;
