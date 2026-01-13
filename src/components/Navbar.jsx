@@ -66,16 +66,7 @@ function Navbar() {
         >
           Contact
         </a>
-        <div className="theme-toggle">
-          <label className="switch">
-            <input 
-              type="checkbox" 
-              checked={isDarkMode}
-              onChange={toggleTheme}
-            />
-            <span className="slider round"></span>
-          </label>
-        </div>
+ 
       </nav>
     </header>
   );

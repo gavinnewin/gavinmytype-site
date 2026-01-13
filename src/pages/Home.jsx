@@ -1,44 +1,90 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from "react-router-dom";
 import "../styles/Home.css";
 import BrandsCarousel from "../components/BrandsCarousel";
 
 function Home() {
-    return (
-      <div className="home-container animate-page">
+  const clickTimesRef = useRef([]);
+  const [showLogin, setShowLogin] = useState(false);
 
-        <section className="home-pg">
-          <div className="home-content">
-            <h2>Hello, I'm</h2>
-            <h1><span>Gavin</span></h1>
-            <h3 className="animation"><span></span></h3>
-            <div className="icons">
-              <a href="https://www.instagram.com/gavinmytype/"><i className='bx bxl-instagram-alt'></i></a>
-              <a href="https://www.tiktok.com/@gavinmytype?lang=en"><i className='bx bxl-tiktok'></i></a>
-              <a href="https://www.youtube.com/@gavinnmytype"><i className='bx bxl-youtube'></i></a>
-            </div>
-            <div className="btn-container">
-              <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=gavinmytype@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-1"
-              >
-                Contact me
-              </a>
-            </div>
-          </div>
-          <div className="ppf-img">
-            <Link to="/about">
-              <img src="/images/ppf.jpg" alt="" />
-            </Link>
-          </div>
-        </section>
-          <div className="brands-wrap">
-            <BrandsCarousel />
-          </div>
-      </div>
+  const REQUIRED_CLICKS = 5;
+  const THRESHOLD_MS = 2000;
+
+  const handleSecretClick = () => {
+    const now = Date.now();
+
+    clickTimesRef.current = clickTimesRef.current.filter(
+      (t) => now - t < THRESHOLD_MS
     );
-  }
-  
-  export default Home;
+
+    clickTimesRef.current.push(now);
+
+    if (clickTimesRef.current.length >= REQUIRED_CLICKS) {
+      clickTimesRef.current = [];
+      setShowLogin(true);
+    }
+  };
+
+  return (
+    <div className="home-container animate-page">
+
+      <section className="home-pg">
+        <div className="home-content">
+          <h2>Hello, I'm</h2>
+          <h1><span>Gavin</span></h1>
+          <h3 className="animation"><span></span></h3>
+
+          <div className="icons">
+            <a href="https://www.instagram.com/gavinmytype/"><i className='bx bxl-instagram-alt'></i></a>
+            <a href="https://www.tiktok.com/@gavinmytype?lang=en"><i className='bx bxl-tiktok'></i></a>
+            <a href="https://www.youtube.com/@gavinnmytype"><i className='bx bxl-youtube'></i></a>
+          </div>
+
+          <div className="btn-container">
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=gavinmytype@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-1"
+            >
+              Contact me
+            </a>
+          </div>
+        </div>
+
+        {/* PROFILE PIC + SECRET TRIGGER */}
+        <div className="ppf-img" onClick={handleSecretClick}>
+      
+            <img src="/images/ppf.jpg" alt="Gavin" />
+    
+        </div>
+      </section>
+
+      <div className="brands-wrap">
+        <BrandsCarousel />
+      </div>
+
+      {/* ADMIN LOGIN MODAL */}
+      {showLogin && (
+        <div className="admin-modal-backdrop">
+          <div className="admin-modal">
+            <h3>Admin Login</h3>
+
+            {/* placeholder for now */}
+            <input type="password" placeholder="Admin password" />
+            <button>Login</button>
+
+            <button
+              className="close-btn"
+              onClick={() => setShowLogin(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default Home;
