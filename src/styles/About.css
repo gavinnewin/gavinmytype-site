@@ -1,99 +1,135 @@
-.animation1{
-    font-size: 34px;
-    font-weight: 600;
-    min-width: 400px;
+/* ── Bio section ── */
+.about-bio {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: clamp(5rem, 14vh, 9rem) 1.6rem 3rem;
 }
 
-.animation1 span{
-    position: relative;
+.about-hello {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #8a8a8a;
+  margin-bottom: 0.6rem;
 }
 
-.animation1 span::before{
-    content: "Gavin Nguyen";
-    color: var(--main-color);
-    animation: words1 2s 1 forwards;
+.animation1 {
+  font-size: clamp(2.6rem, 7vw, 4.4rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 2rem;
+}
+
+.animation1 span {
+  position: relative;
+}
+
+.animation1 span::before {
+  content: "Gavin Nguyen";
+  color: var(--main-color);
+  animation: words1 2s 1 forwards;
 }
 
 .animation1 span::after {
-    content: "";
-    background-color: var(--bg-color);
-    position: absolute;
-    width: calc(100% + 20px);
-    height: 100%;
-    border-left: 5px solid var(--bg-color);
-    right: -8px;
-    animation: cursor1 0.6s steps(1) 4, typing1 2s steps(21) 1 forwards;
+  content: "";
+  background-color: var(--bg-color);
+  position: absolute;
+  width: calc(100% + 20px);
+  height: 100%;
+  border-left: 5px solid var(--bg-color);
+  right: -8px;
+  animation: cursor1 0.6s steps(1) 4, typing1 2s steps(21) 1 forwards;
 }
 
-@keyframes cursor1{
-    0%,
-    100%{
-        border-left: 2px solid var(--main-color);
-    }
-    50% {
-        border-left: 2px solid transparent;
-    }
+@keyframes cursor1 {
+  0%, 100% { border-left: 2px solid var(--main-color); }
+  50%       { border-left: 2px solid transparent; }
 }
 
-@keyframes words1{
-    0%,
-    100%{
-        content: "Gavin Nguyen";
-    }
+@keyframes words1 {
+  0%, 100% { content: "Gavin Nguyen"; }
 }
 
-@keyframes typing1{
-    from {
-        width: 100%;
-    }
-    to {
-        width: 0;
-    }
+@keyframes typing1 {
+  from { width: 100%; }
+  to   { width: 0; }
 }
 
-.home-content1{
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
-    text-align: left;
-    justify-content: center;
-    margin-top: -2rem;
+.about-bio p {
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.85;
+  color: #b8b8b8;
+  margin-bottom: 1.2rem;
 }
 
-.home-content1  h3{
-    margin-top: 50px;
-    font-size: 20px;
-    margin-left: 20px;
-    font-weight: 200;
-    word-spacing: 7px;
-    letter-spacing: 5px;
+@media (min-width: 768px) {
+  .about-bio p {
+    font-size: 1.55rem;
+  }
 }
 
-.home-content1 h2{
-    margin-bottom: -1rem;
-    margin-top: 10rem;
-    font-size: 1.5rem;
+/* ── Video section ── */
+.about-videos {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 1rem 1.6rem 6rem;
 }
 
-.home-content1 h1{
-    font-size: 7rem;
-    font-weight: 700;
-    margin-top: 1.5rem;
-    line-height: 1;
+.about-videos-label {
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--main-color);
+  margin-bottom: 1.8rem;
 }
 
-.ppf-img1 img{
-    position: relative;
-    top: -5rem;
-    width: 15vw;
-    border-radius: 50%;
-    box-shadow: 0 0 25px var(--main-color);
-    cursor: pointer;
-    transition: 0.4s ease-in-out;
-    margin-right: 50px;
+.about-videos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
 }
 
-.ppf-img1 img:hover{
-    box-shadow:0 0 50px  #515151;
+.about-video-wrap {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #111;
 }
 
+.about-video {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 0;
+  display: block;
+  object-fit: contain;
+  background: #111;
+  transition: opacity 0.25s ease;
+}
+
+.about-video-hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.35);
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.about-video-wrap:hover .about-video-hint,
+.about-video-wrap.playing .about-video-hint {
+  opacity: 0;
+}
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+  .about-videos-grid {
+    gap: 0.7rem;
+  }
+}

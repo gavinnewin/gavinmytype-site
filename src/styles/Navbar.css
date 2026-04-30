@@ -47,6 +47,7 @@ html, body {
   position: relative;
 }
 
+
 .navbar a::after {
   content: '';
   position: absolute;
@@ -145,9 +146,25 @@ input:checked + .slider:before {
 .hamburger span {
   width: 100%;
   height: 2px;
-  background-color: #333;
+  background-color: var(--text-color);
   border-radius: 2px;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* top bar → rotates down to form \ */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+/* middle bar → fades out */
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+/* bottom bar → rotates up to form / */
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 .mobile-menu-btn {
@@ -212,5 +229,9 @@ input:checked + .slider:before {
 
   .navbar.open {
     right: 0;
+  }
+
+  .navbar a::after {
+    display: none;
   }
 }

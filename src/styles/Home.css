@@ -1,340 +1,241 @@
-.home-content {
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
-    text-align: left;
-    justify-content: center;
-    margin-top: 7rem;
-}
-
-span{
-    color: var(--text-color);
-}
-
-.logo span{
-    color: var(--main-color);
-}
-
-.home-content h3{
-    margin-bottom: 2rem;
-    font-size: 3.5rem;
-    margin-top: 50px;
-}
-
-.home-content h2{
-    margin-bottom: -1rem;
-    margin-top: 10rem;
-    font-size: 1.5rem;
-}
-
-.home-content h1{
-    font-size: 7rem;
-    font-weight: 700;
-    margin-top: 1.5rem;
-    line-height: 1;
-}
-
-.ppf-img img{
-    position: relative;
-    min-width: 120px;   /* Minimum size */
-    max-width: 300px; 
-    top: 10rem;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.2s ease-in-out;
-}
-
-.ppf-img img:hover{
-    box-shadow:0 0 35px  #515151;
-    transform: scale(1.005);
-}
-
-.home-content p{
-    font-size:  1.5rem;
-    font-weight: 500;
-    line-height: 1.8;
-    max-width: 1000px;
-}
-
-.icons a{
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 4.5rem;
-    height: 4.5rem;
-    background: transparent;
-    border: 2px solid var(--text-color);
-    border-radius: 50%;
-    color: var( --text-color);
-    margin: 3rem 1.5rem 3rem 0;
-    transition: 0.3 ease-in-out;
-    font-size: 2rem;
-}
-
-.icons a:hover{
-    transform: scale(1.1)translateY(-2px);
-    color: var( --main-color);
-    border: 2px solid var(--main-color);
-}
-
-.btn-container a {
-    display: inline-block;
-    padding: 1rem 3.5rem;
-    background-color: #515151;
-    letter-spacing: 0.1rem;
-    color: white;
-    border-radius: 4rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-    position: relative; /* Establish stacking context */
-    z-index: 2; /* Keep the button content above the glow */
-    text-decoration: none;
-    border: none;
-    outline: none;
-}
-
-.btn-container a:hover {
-    transform: scale(1.03);
-}
-
-.btn-container a::before {
-    content: "";
-    background: linear-gradient(
-        45deg,
-        #0088cc,
-        #00d1b2,
-        #0077b6,
-        #0096c7,
-        #00c9a7,
-        #00b4d8
-    );
-    position: absolute;
-    top: -8px; /* Extend the glow outside the button */
-    left: -8px;
-    width: calc(100% + 15px); /* Glow area larger than button */
-    height: calc(100% + 15px);
-    background-size: 600%;
-    z-index: -5; /* Ensure glow is below the button content */
-    filter: blur(15px); /* Increase blur for a smooth glow */
-    animation: glowing 20s linear infinite;
-    transition: opacity 0.3s ease-in-out;
-    border-radius: 4rem; /* Match button's border-radius */
-    opacity: 0; /* Initially invisible */
-}
-
-.btn-container a:hover::before {
-    opacity: 1; /* Make the glow visible on hover */
-}
-
-.btn-container a::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #515151; /* Matches the button background */
-    left: 0;
-    top: 0;
-    z-index: -2; 
-    border-radius: 4rem; 
-}
-
-@keyframes glowing{
-    0% {background-position: 0 0;}
-    50% {background-position: 400% 0;}
-    100% {background-position: 0 0;}
-}
-
-
-.animation{
-    font-size: 34px;
-    font-weight: 600;
-    min-width: 280px;
-}
-
-.animation span{
-    position: relative;
-    
-}
-
-.animation span::before {
-    content: "UGC Creator";
-    color: var(--main-color);
-    animation: words 2s 1 forwards;
-}
-
-.animation span::after {
-    content: "";
-    background-color: var(--bg-color);
-    position: absolute;
-    width: calc(100% + 8px);
-    height: 100%;
-    border-left: 3px solid var(--bg-color);
-    right: -8px;
-    animation: cursor 0.6s steps(1) 4, typing 2s steps(20) 1 forwards;
-}
-
-@keyframes cursor {
-    0%, 100% {
-        border-left: 2px solid var(--main-color);
-    }
-    50% {
-        border-left: 2px solid var(--bg-color);
-    }
-}
-
-@keyframes words {
-    0%, 100% {
-        content: "UGC Creator";
-    }
-}
-
-@keyframes typing {
-    from {
-        width: 10ch;
-    }
-    to {
-        width: 0;
-    }
-}
-
-@media (max-width: 768px) {
-  .home-content h3 {
-    margin-bottom: 0.5rem;
-    font-size: 2.5rem;
-    margin-top: 20px;
-  }
-
-  .home-content h2 {
-    margin-bottom: -0.5rem;
-    margin-top: 3rem;
-    font-size: 1.2rem;
-  }
-
-  .icons a {
-    margin: 0.8rem 1rem 2rem 0;
-  }
-
-  .btn-container {
-    margin-top: 1.5rem;
-  }
-}
-
-/* space between Contact button and BrandsCarousel */
-.brands-wrap {
-  margin-top: 24px;
-}
-
-/* Mobile: fit hero + carousel on one screen better */
-@media (max-width: 768px) {
-  .home-container {
-    padding-top: 10px; /* enough for fixed navbar */
-  }
-
-  .home-content {
-    margin-top: 0;          /* remove 7rem */
-    align-items: center;
-    text-align: center;
-  }
-
-  .home-content h2 {
-    margin-top: 0.5rem;     /* was huge */
-    margin-bottom: 0.25rem;
-    font-size: 1.2rem;
-  }
-
-  .home-content h1 {
-    font-size: 4rem;
-    margin-top: 0.5rem;
-  }
-
-  .home-content h3 {
-    margin-top: 0.75rem;    /* reduce */
-    margin-bottom: 0.75rem;
-    font-size: 2.2rem;
-  }
-
-  .icons a {
-    margin: 0.5rem 0.6rem 1rem 0;
-    width: 3.6rem;
-    height: 3.6rem;
-  }
-
-  .btn-container {
-    margin-top: 0.75rem;
-  }
-
-  /* remove big image offset pushing content down */
-  .ppf-img img {
-    top: 0;                /* was 10rem */
-    max-width: 170px;
-  }
-
-  /* reduce carousel spacing */
-  .brands-wrap {
-    margin-top: 16px;
-  }
-
-   .home-content {
-    margin-top: -2rem;
-  }
-
-  
-}
-
-/* ================================
-   HOME PAGE LAYOUT FIX
-   ================================ */
-
-/* Make the page fill the screen */
+/* ── Container ── */
 .home-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Hero section takes available space */
+/* ── Hero ── */
 .home-pg {
-   justify-content: flex-start; /* moves content up */
-    padding-top: 4rem;   
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 6rem;
+  padding: 8rem 6rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-/* Push carousel to the bottom */
+/* ── Text ── */
+.home-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.home-hello {
+  font-size: 1.1rem;
+  color: #8a8a8a;
+  font-weight: 400;
+  margin-bottom: 0.4rem;
+}
+
+.home-content h1 {
+  font-size: clamp(4rem, 8vw, 7rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.home-content h3 {
+  font-size: clamp(1.6rem, 3vw, 2.8rem);
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+/* ── Social icons ── */
+.icons {
+  display: flex;
+  gap: 1.4rem;
+  margin-bottom: 2.4rem;
+}
+
+.icons a {
+  font-size: 2.2rem;
+  color: #8a8a8a;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.icons a:hover {
+  color: var(--main-color);
+  transform: translateY(-2px);
+}
+
+/* ── Contact button ── */
+.btn-container a {
+  display: inline-block;
+  padding: 1rem 3rem;
+  background: var(--main-color);
+  color: #fff;
+  border-radius: 4rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.04rem;
+  text-decoration: none;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s ease;
+}
+
+.btn-container a:hover {
+  transform: translateY(-2px);
+}
+
+.btn-container a::before {
+  content: "";
+  background: linear-gradient(45deg, #0088cc, #00d1b2, #0077b6, #0096c7, #00c9a7, #00b4d8);
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: calc(100% + 16px);
+  height: calc(100% + 16px);
+  background-size: 600%;
+  z-index: -1;
+  filter: blur(15px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 4rem;
+}
+
+.btn-container a:hover::before {
+  opacity: 1;
+}
+
+.btn-container a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--main-color);
+  z-index: -1;
+  border-radius: 4rem;
+}
+
+@keyframes glowing {
+  0%   { background-position: 0 0; }
+  50%  { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+
+/* ── Profile photo ── */
+.ppf-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ppf-img img {
+  width: clamp(180px, 22vw, 300px);
+  border-radius: 50%;
+  box-shadow: 0 0 30px var(--main-color);
+  cursor: pointer;
+}
+
+/* ── Brands carousel ── */
 .brands-wrap {
-  margin-top: auto;
-  padding-top: 40px;     /* space below Contact button */
-  padding-bottom: 16px;  /* breathing room from bottom */
+  padding: 24px 0 16px;
 }
 
-/* ================================
-   MOBILE TUNING
-   ================================ */
+/* ── Typing animation ── */
+span {
+  color: var(--text-color);
+}
+
+.logo span {
+  color: var(--main-color);
+}
+
+.animation {
+  font-size: clamp(1.6rem, 3vw, 2.8rem);
+  font-weight: 500;
+}
+
+.animation span {
+  position: relative;
+}
+
+.animation span::before {
+  content: "UGC Creator";
+  color: var(--main-color);
+  animation: words 2s 1 forwards;
+}
+
+.animation span::after {
+  content: "";
+  background-color: var(--bg-color);
+  position: absolute;
+  width: calc(100% + 8px);
+  height: 100%;
+  border-left: 3px solid var(--bg-color);
+  right: -8px;
+  animation: cursor 0.6s steps(1) 4, typing 2s steps(20) 1 forwards;
+}
+
+@keyframes cursor {
+  0%, 100% { border-left: 2px solid var(--main-color); }
+  50%       { border-left: 2px solid var(--bg-color); }
+}
+
+@keyframes words {
+  0%, 100% { content: "UGC Creator"; }
+}
+
+@keyframes typing {
+  from { width: 10ch; }
+  to   { width: 0; }
+}
+
+/* ── Mobile ── */
 @media (max-width: 768px) {
-  /* Remove excess top spacing */
-  .home-content {
-    margin-top: -2rem;
-    align-items: center;
+  .home-pg {
+    grid-template-columns: 1fr;
     text-align: center;
+    justify-items: center;
+    padding: 2rem 1.6rem 1.6rem;
+    gap: 1.6rem;
   }
 
-  /* Bring profile photo up */
+  /* text first, photo below */
+  .home-content {
+    align-items: center;
+    order: 1;
+  }
+
+  .ppf-img {
+    order: 2;
+  }
+
   .ppf-img img {
-    top: 0;              /* overrides earlier 10rem */
-    max-width: 170px;
+    width: 160px;
   }
 
-  /* Tighten hero spacing */
-  .home-content h2 {
-    margin-top: 0.5rem;
+  .home-content h1 {
+    font-size: 4.5rem;
   }
 
   .home-content h3 {
-    margin-top: 0.75rem;
+    margin-bottom: 1.2rem;
   }
 
-  /* Keep carousel at bottom but visible */
+  .icons {
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  /* bigger tap targets */
+  .icons a {
+    font-size: 2.6rem;
+    padding: 0.4rem;
+  }
+
+  /* disable glow blur on mobile — looks messy */
+  .btn-container a::before {
+    display: none;
+  }
+
   .brands-wrap {
-    padding-top: 48px;   /* bigger gap under Contact */
-    padding-bottom: 10px;
+    padding: 12px 0 8px;
   }
 }
-

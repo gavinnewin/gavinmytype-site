@@ -44,11 +44,10 @@ function calcStats({ correctChars, typedChars, elapsedSec }) {
 }
 
 export default function Gavintype() {
-  const [duration, setDuration] = useState(30);
+  const [duration, setDuration] = useState(15);
   const [punctuation, setPunctuation] = useState(false);
   const [numbers, setNumbers] = useState(false);
 
-  // number of words shown on screen (monkeytype-ish)
   const [wordCount] = useState(40);
 
   const [words, setWords] = useState(() =>
@@ -79,7 +78,6 @@ export default function Gavintype() {
 
   const elapsed = useMemo(() => {
     if (!startRef.current) return 0;
-    // if finished by timer, elapsed should be duration
     if (isFinished && timeLeft === 0) return duration;
     return (Date.now() - startRef.current) / 1000;
   }, [timeLeft, isFinished, duration]);
@@ -99,7 +97,6 @@ export default function Gavintype() {
     requestAnimationFrame(() => inputRef.current?.focus());
   };
 
-  // regenerate when options change (only if not running)
   useEffect(() => {
     if (isRunning) return;
     setTimeLeft(duration);
@@ -110,7 +107,6 @@ export default function Gavintype() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [duration, punctuation, numbers]);
 
-  // timer
   useEffect(() => {
     if (!isRunning || isFinished) return;
     const id = setInterval(() => {
@@ -127,7 +123,6 @@ export default function Gavintype() {
     return () => clearInterval(id);
   }, [isRunning, isFinished]);
 
-  // shortcuts
   useEffect(() => {
     const onKeyDown = (e) => {
       if (e.key === "Tab") {
@@ -151,11 +146,9 @@ export default function Gavintype() {
       startRef.current = Date.now();
     }
 
-    // don’t allow beyond target
     const nextTyped = val.slice(0, target.length);
     setTyped(nextTyped);
 
-    // if user reaches end before timer, finish (optional)
     if (nextTyped.length >= target.length) {
       setIsFinished(true);
       setIsRunning(false);
@@ -163,9 +156,23 @@ export default function Gavintype() {
     }
   };
 
-  // Render words as spans (word wrapped like monkeytype)
   const rendered = useMemo(() => {
-    const spans = [];
+    const result = [];
+    let wordChars = [];
+    let wordStart = -1;
+
+    const flushWord = () => {
+      if (wordChars.length > 0) {
+        result.push(
+          <span key={"w" + wordStart} className="gt-word">
+            {wordChars}
+          </span>
+        );
+        wordChars = [];
+        wordStart = -1;
+      }
+    };
+
     for (let i = 0; i < target.length; i++) {
       const t = target[i];
       const g = typed[i];
@@ -176,16 +183,22 @@ export default function Gavintype() {
 
       if (i === caretIndex && !isFinished) cls += " caret";
 
-      // make spaces render as real spacing but still selectable
-      const display = t === " " ? "\u00A0" : t;
+      // Show what the user actually typed on a mistake instead of the target letter
+      const isWrong = i < typed.length && g !== t;
+      const display = (isWrong && t !== " " && g !== " ") ? g : (t === " " ? " " : t);
 
-      spans.push(
-        <span key={i} className={cls}>
-          {display}
-        </span>
-      );
+      const charSpan = <span key={i} className={cls}>{display}</span>;
+
+      if (t === " ") {
+        flushWord();
+        result.push(charSpan);
+      } else {
+        if (wordStart === -1) wordStart = i;
+        wordChars.push(charSpan);
+      }
     }
-    return spans;
+    flushWord();
+    return result;
   }, [target, typed, caretIndex, isFinished]);
 
   return (
@@ -233,25 +246,31 @@ export default function Gavintype() {
 
       {/* Center area */}
       <section className={`gt-stage ${isFinished ? "finished" : ""}`} aria-label="Typing test">
-        <div className="gt-lang">english</div>
+        <div className="gt-textArea">
+          {!isFinished && (
+            <div className={`gt-timer${isRunning ? " running" : ""}`}>{timeLeft}</div>
+          )}
 
-        <div className="gt-text" role="presentation">
-          {rendered}
+          <div className="gt-lang">english</div>
+
+          <div className="gt-text" role="presentation">
+            {rendered}
+          </div>
+
+          <button
+            className="gt-x"
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              restart();
+            }}
+            title="restart (tab)"
+          >
+            ↻
+          </button>
         </div>
-         <button
-  className="gt-x"
-  type="button"
-  onClick={(e) => {
-    e.stopPropagation();
-    restart();
-  }}
-  title="restart (tab)"
->
-  ↻
-</button>
 
-
-        {/* Hidden input captures typing */}
+        {/* Hidden input captures typing — pointer-events none so it doesn't block button clicks */}
         <input
           ref={inputRef}
           className="gt-input"
@@ -266,24 +285,33 @@ export default function Gavintype() {
 
         {isFinished && (
           <div className="gt-results">
-            <div className="gt-resRow">
-              <div className="gt-resBox">
-                <div className="gt-resNum">{stats.wpm}</div>
-                <div className="gt-resLab">wpm</div>
+            <div className="gt-resCard">
+              <div className="gt-resHero">
+                <div className="gt-resHeroNum">{stats.wpm}</div>
+                <div className="gt-resHeroLab">wpm</div>
               </div>
-              <div className="gt-resBox">
-                <div className="gt-resNum">{Math.round(stats.acc)}%</div>
-                <div className="gt-resLab">accuracy</div>
-              </div>
-              <div className="gt-resBox">
-                <div className="gt-resNum">{errors}</div>
-                <div className="gt-resLab">errors</div>
-              </div>
-            </div>
 
-            <button className="gt-restart centered" type="button" onClick={restart}>
-              restart (tab)
-            </button>
+              <div className="gt-resDivider" />
+
+              <div className="gt-resRow">
+                <div className="gt-resBox">
+                  <div className="gt-resNum">{Math.round(stats.acc)}%</div>
+                  <div className="gt-resLab">accuracy</div>
+                </div>
+                <div className="gt-resBox">
+                  <div className="gt-resNum">{errors}</div>
+                  <div className="gt-resLab">errors</div>
+                </div>
+                <div className="gt-resBox">
+                  <div className="gt-resNum">{duration}s</div>
+                  <div className="gt-resLab">time</div>
+                </div>
+              </div>
+
+              <button className="gt-restartBtn" type="button" onClick={restart}>
+                ↻ restart <span className="gt-kbdHint">tab</span>
+              </button>
+            </div>
           </div>
         )}
       </section>
